@@ -1,0 +1,35 @@
+body{
+    background-color: #14ADBF;
+}
+.box-1{
+    background-color: #FF7F50;
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-right: 30%;
+    /* padding-top: 4%;
+    padding-left: 7%;
+    padding-bottom: 5%; */
+    border-radius: 3%;
+    padding: 7%;
+}
+
+.btn{
+    background-color: transparent;
+    border: 2px solid rgb(19, 19, 19);
+    min-width: 100px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+
+.btn:hover{
+    color: white;
+    
+    background-color: rgb(19, 19, 19);
+
+}

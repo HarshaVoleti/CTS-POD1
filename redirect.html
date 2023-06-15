@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redirecting...</title>
+  <script src="https://alcdn.msauth.net/browser/2.18.0/js/msal-browser.min.js"></script>
+</head>
+<body>
+  <h1>Logged in</h1>
+  <button onclick="logout()">Logout</button>
+  
+  <script>
+    const msalConfig = {
+      auth: {
+        clientId: '0bcb521d-fd86-4cb1-889c-bbc25ee0610b',
+        authority: 'https://login.microsoftonline.com/499881f9-8819-451e-ace7-4e600b7fc3e9',
+        redirectUri: 'http://localhost:3000/redirect.html',
+      },
+      cache: {
+        cacheLocation: 'localStorage',
+      },
+    };
+    
+    const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+    msalInstance.handleRedirectPromise().then((authResponse) => {
+      console.log('Authentication successful:', authResponse);
+      // Redirect to the protected page or perform additional actions
+
+    }).catch((error) => {
+      console.log('An error occurred during authentication:', error);
+    });
+
+    async function logout() {
+      try {
+        const logoutRequest = {
+          account: msalInstance.getAccountByHomeId(msalInstance.getAllAccounts()[0].homeAccountId),
+          postLogoutRedirectUri: 'http://localhost:3000/login.html', 
+        };
+    
+        await msalInstance.logout(logoutRequest);
+        console.log('Logout successful');
+        // Redirect to the login page
+        window.location.href = '/login.html';
+    
+      } catch (error) {
+        console.log('An error occurred during logout:', error);
+      }
+    }
+  </script>
+</body>
+</html>
